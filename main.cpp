@@ -20,6 +20,7 @@ int gen_hash_index(string str);
 void displayEntries(const map<int, list<string>>& hash_table);
 void searchKey(const map<int, list<string>>& hash_table);
 void addKey(map<int, list<string>>& hash_table);
+void removeKey(map<int, list<string>>& hash_table);
 
 // Main function
 int main()
@@ -95,6 +96,7 @@ int main()
             case 3:
             {
                 // Call the addKey() function
+                addKey(hash_table);
 
                 // Break;
                 break;
@@ -104,6 +106,7 @@ int main()
             case 4:
             {
                 // Call the removeKey() function
+                removeKey(hash_table);
 
                 // Break;
                 break;
@@ -186,7 +189,7 @@ int gen_hash_index(string str)
 
 /*
     displayEntries()
-    Display the first 100 entries of the map
+    Display the first 100 entries of the hash table
     Arguments:
         - hash_table: the hash table whose entries we are displaying
     Return: none
@@ -206,6 +209,17 @@ void displayEntries(const map<int, list<string>>& hash_table)
         if (count >= 100)
         {
             break;
+        }
+
+        // Check whether the bucket is empty
+        if (pair.second.size() == 0)
+        {
+            // Display the key
+            cout << pair.first << " (total: 0)" << endl;
+            count++;          // Increment the count
+
+            // Skip to the next key in the map
+            continue;
         }
 
         // Display the key
@@ -256,7 +270,7 @@ void displayEntries(const map<int, list<string>>& hash_table)
 
 /*
     searchKey()
-    Search for a key in the map and display the total number of elements in the bucket
+    Search for a key in the hash table and display the total number of elements in the bucket
     Arguments:
         - hash_table: the hash table whose entries we are displaying
     Return: none
@@ -301,7 +315,7 @@ void searchKey(const map<int, list<string>>& hash_table)
 
 /*
     addKey()
-    Add a key into the hash table
+    Add a key to the hash table
     Arguments:
         - hash_table: the hash table to add the key to
     Return: none
@@ -337,5 +351,43 @@ void addKey(map<int, list<string>>& hash_table)
 
         // Display a message
         cout << "Added key " << key << " to the hash table!" << endl;
+    }
+}
+
+/*
+    removeKey()
+    Remove a key from the hash table
+    Arguments:
+        - hash_table: the hash table to remove the key from
+    Return: none
+*/
+void removeKey(map<int, list<string>>& hash_table)
+{
+    // Display a message
+    cout << " --- Removing a key --- " << endl;
+
+    // Create a variable to store the key
+    int key = 0;
+
+    // Prompt the user to enter the key to search for
+    cout << "Please enter the key you want to search for: ";
+    cin >> key;
+
+    // Create an iterator and use it to find the key
+    auto it = hash_table.find(key);
+
+    // Check whether the key exists in the hash table
+    if (it != hash_table.end())
+    {
+        // If the key exists, we remove it from the hash table
+        hash_table.erase(key);
+
+        // Display a message
+        cout << "Removed key " << key << " from the hash table!" << endl;
+    }
+    else          // Otherwise, we do nothing
+    {
+        // Display a message
+        cout << "Key " << key << " does not exist!" << endl;
     }
 }
