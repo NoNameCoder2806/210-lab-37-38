@@ -22,9 +22,9 @@ void searchKey(const map<int, list<string>>& hash_table);
 void addKey(map<int, list<string>>& hash_table);
 void removeKey(map<int, list<string>>& hash_table);
 void modifyKey(map<int, list<string>>& hash_table);
-void addCode();
-void changeCode();
-void removeCode();
+void addCode(list<string>& codes);
+void changeCode(list<string>& codes);
+void removeCode(list<string>& codes);
 
 // Main function
 int main()
