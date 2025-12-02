@@ -22,9 +22,6 @@ void searchKey(const map<int, list<string>>& hash_table);
 void addKey(map<int, list<string>>& hash_table);
 void removeKey(map<int, list<string>>& hash_table);
 void modifyKey(map<int, list<string>>& hash_table);
-void addCode(list<string>& codes);
-void changeCode(list<string>& codes);
-void removeCode(list<string>& codes);
 
 // Main function
 int main()
@@ -397,8 +394,46 @@ void removeKey(map<int, list<string>>& hash_table)
 }
 
 /*
+    modifyKey()
+    Allows the user to modify the list of the key
 */
-void modifyKey()
+void modifyKey(map<int, list<string>>& hash_table)
 {
-    // 
+    // Display a message
+    cout << " --- Modifying a key --- " << endl;
+
+    // Create a variable to store the key
+    int key = 0;
+
+    // Prompt the user to enter the key to search for
+    cout << "Please enter the key you want to modify: ";
+    cin >> key;
+
+    // Create an iterator and use it to find the key
+    auto it = hash_table.find(key);
+
+    // Check whether the key exists in the hash table
+    if (it != hash_table.end())
+    {
+        // If the key exists, we prompt the user to enter a new key
+        int newKey = 0;
+        cout << "Please enter a new key: ";
+        cin >> newKey;
+
+        // Check whether the new key existed
+        auto it2 = hash_table.find(newKey);
+        if (it2 != hash_table.end())
+        {
+
+        }
+        hash_table.erase(key);
+
+        // Display a message
+        cout << "Removed key " << key << " from the hash table!" << endl;
+    }
+    else          // Otherwise, we do nothing
+    {
+        // Display a message
+        cout << "Key " << key << " does not exist!" << endl;
+    }
 }
