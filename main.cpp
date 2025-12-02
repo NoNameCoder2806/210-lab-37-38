@@ -17,6 +17,7 @@ const int MAX_CHOICE = 6;
 // Function prototypes
 void displayMenu();
 int gen_hash_index(string str);
+void displayEntries(const map<int, list<string>>& hash_table);
 
 // Main function
 int main()
@@ -68,10 +69,11 @@ int main()
         // Perform the operation based on the user's choice
         switch (choice)
         {
-            // Display the first 100 entries
+            // Case 1: Display the first 100 entries
             case 1:
             {
-                // Case 1: Call the displayEntries() function
+                // Call the displayEntries() function
+                displayEntries(hash_table);
                 
                 // Break
                 break;
@@ -128,57 +130,6 @@ int main()
     // Display a header
     cout << "First 100 keys and their buckets:" << endl;
 
-    // Display the first 100 entries of the map
-    for (const auto &pair : hash_table)
-    {
-        // If the count is larger than 100
-        if (count >= 100)
-        {
-            break;
-        }
-
-        // Display the key
-        cout << pair.first << ": ";
-
-        // Count the number of elements that are printed
-        int printed = 0;
-
-        // Display all the data in the list
-        cout << "[";
-        for (auto data : pair.second)
-        {
-            // Display the elements
-            cout << data;
-            printed++;          // Increment the number of printed elements
-
-            // Check the total number of elements printed
-            if (printed >= 5 && printed < pair.second.size())
-            {
-                // Close the list
-                cout << ", ...] (total: " << pair.second.size() << ")" << endl;
-                
-                // Break out of the loop
-                break;
-            }
-            else if (printed >= pair.second.size())
-            {
-                // CLose the list
-                cout << "] (total: " << pair.second.size() << ")" << endl;
-
-                // Break out of the loop
-                break;
-            }
-            else
-            {
-                // Display a comma and a space
-                cout << ", ";
-            }
-        }
-
-        // Increment the count
-        count++;
-    }
-
     return 0;
 }
 
@@ -228,4 +179,74 @@ int gen_hash_index(string str)
 
     // Return the sum value as the key
     return sum;
+}
+
+/*
+    displayEntries()
+    Display the first 100 entries of the map
+    Arguments:
+        - hash_table: the hash table whose entries we are displaying
+    Return: none
+*/
+void displayEntries(const map<int, list<string>>& hash_table)
+{
+    // Display a message
+    cout << " --- Displaying the first 100 entries --- " << endl;
+
+    // Create an integer counter to keep track of the number of entries
+    int count = 0;
+
+    // Display the first 100 entries of the map
+    for (const auto& pair : hash_table)
+    {
+        // If the count is larger than 100
+        if (count >= 100)
+        {
+            break;
+        }
+
+        // Display the key
+        cout << pair.first << ": ";
+
+        // Count the number of elements that are printed
+        int printed = 0;
+
+        // Display all the data in the list
+        cout << "[";
+        for (auto data : pair.second)
+        {
+            // Display the elements
+            cout << data;
+            printed++;          // Increment the number of printed elements
+
+            // Check the total number of elements printed
+            if (printed >= 5 && printed < pair.second.size())
+            {
+                // Close the list
+                cout << ", ...] (total: " << pair.second.size() << ")" << endl;
+                
+                // Break out of the loop
+                break;
+            }
+            else if (printed >= pair.second.size())
+            {
+                // CLose the list
+                cout << "] (total: " << pair.second.size() << ")" << endl;
+
+                // Break out of the loop
+                break;
+            }
+            else
+            {
+                // Display a comma and a space
+                cout << ", ";
+            }
+        }
+
+        // Increment the count
+        count++;
+    }
+
+    // Enter a new line
+    cout << endl;
 }
