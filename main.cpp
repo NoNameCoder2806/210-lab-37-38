@@ -11,7 +11,6 @@ using namespace std;
 
 // Constants
 const string DATA_FILE = "data.txt";
-const int MODULO = 97; 
 
 // Function prototypes
 int gen_hash_index(string str);
@@ -42,14 +41,34 @@ int main()
 
         // Insert the data into the map
         hash_table[key].push_front(line);
-        count++;          // Increment the count
+    }
 
-        // Display the first 100 entries
-        if (count <= 100)
+    // Display a header
+    cout << "Key   List" << endl;
+    // Display the first 100 entries of the map
+    for (const auto &pair : hash_table)
+    {
+        // If the count is larger than 100
+        if (count >= 100)
         {
-            // Display the key and value
-            cout << count << ": [Key: " << key << ", value: " << line << "]" << endl;
+            break;
         }
+
+        // Display the key
+        cout << pair.first << " ";
+
+        // Display all the data in the list
+        for (auto data : pair.second)
+        {
+            // Display the elements
+            cout << data << " ";
+        }
+
+        // Increment the count
+        count++;
+
+        // Enter a new line
+        cout << endl;
     }
 
     return 0;
@@ -76,6 +95,6 @@ int gen_hash_index(string str)
         sum += (int) str.at(i);
     }
 
-    // Return the sum value mod 97 (return the hash key)
-    return sum % MODULO;
+    // Return the sum value as the key
+    return sum;
 }
