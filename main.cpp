@@ -129,8 +129,8 @@ int main()
                 // Display a message
                 cout << "Thank you for using this program! Exiting..." << endl;
 
-                // Break
-                break;
+                // Exit the program
+                return 0;
             }
         }
     }
