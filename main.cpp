@@ -35,7 +35,7 @@ int main()
     // Create a loop and read all the lines in the data file 
     while (getline(fin, line))
     {
-        // Add the sum of the line
+        // Add the sum of the line 
         key += gen_hash_index(line);
     }
 
