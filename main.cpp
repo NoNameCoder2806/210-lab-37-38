@@ -57,11 +57,28 @@ int main()
         // Display the key
         cout << pair.first << " ";
 
+        // Count the number of elements that are printed
+        int printed = 0;
+
         // Display all the data in the list
+        cout << "[";
         for (auto data : pair.second)
         {
             // Display the elements
-            cout << data << " ";
+            cout << data;
+            printed++;          // Increment the number of printed elements
+
+            // Check the total number of elements printed
+            if (printed >= 5)
+            {
+                // Break out of the loop
+                break;
+            }
+            else
+            {
+                // Display a comma and a space
+                cout << ", ";
+            }
         }
 
         // Increment the count
