@@ -1,4 +1,4 @@
-// COMSC-210 | Lab 38 | Dat Hoang Vien
+// COMSC-210 | Lab 37 | Dat Hoang Vien
 // IDE used: Visual Studio Code
 
 // Libraries
@@ -11,7 +11,6 @@ using namespace std;
 
 // Constants
 const string DATA_FILE = "data.txt";
-const int MODULO = 97;
 
 // Function prototypes
 int gen_hash_index(string str);
@@ -42,14 +41,60 @@ int main()
 
         // Insert the data into the map
         hash_table[key].push_front(line);
-        count++;          // Increment the count
+    }
 
-        // Display the first 100 entries
-        if (count <= 100)
+    // Display a header
+    cout << "First 100 keys and their buckets:" << endl;
+
+    // Display the first 100 entries of the map
+    for (const auto &pair : hash_table)
+    {
+        // If the count is larger than 100
+        if (count >= 100)
         {
-            // Display the key and value
-            cout << count << ": [Key: " << key << ", value: " << line << "]" << endl;
+            break;
         }
+
+        // Display the key
+        cout << pair.first << ": ";
+
+        // Count the number of elements that are printed
+        int printed = 0;
+
+        // Display all the data in the list
+        cout << "[";
+        for (auto data : pair.second)
+        {
+            // Display the elements
+            cout << data;
+            printed++;          // Increment the number of printed elements
+
+            // Check the total number of elements printed
+            if (printed >= 5 && printed < pair.second.size())
+            {
+                // Close the list
+                cout << ", ...] (total: " << pair.second.size() << ")" << endl;
+                
+                // Break out of the loop
+                break;
+            }
+            else if (printed >= pair.second.size())
+            {
+                // CLose the list
+                cout << "] (total: " << pair.second.size() << ")" << endl;
+
+                // Break out of the loop
+                break;
+            }
+            else
+            {
+                // Display a comma and a space
+                cout << ", ";
+            }
+        }
+
+        // Increment the count
+        count++;
     }
 
     return 0;
@@ -76,6 +121,6 @@ int gen_hash_index(string str)
         sum += (int) str.at(i);
     }
 
-    // Return the sum value mod 97 (return the hash key)
-    return sum % MODULO;
+    // Return the sum value as the key
+    return sum;
 }
