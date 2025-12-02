@@ -22,8 +22,9 @@ int main()
     // Create a map
     map<int, list<string>> hash_table;
 
-    // Create an int variable to store the key
-    int key = 0;
+    // Create int variables
+    int key = 0;            // The key of the value
+    int count = 0;          // The number of data lines read
 
     // Create string variables
     string dataFile = DATA_FILE;           // Store the data file's path
@@ -41,34 +42,14 @@ int main()
 
         // Insert the data into the map
         hash_table[key].push_front(line);
-    }
+        count++;          // Increment the count
 
-    // Create a counter to keep track of the number of elements
-    int count = 0;
-
-    // Display the first 100 elements of the map
-    for (auto pair : hash_table)
-    {
-        // Only display 100 elements
-        if (count >= 100)
+        // Display the first 100 entries
+        if (count <= 100)
         {
-            break;
+            // Display the key and value
+            cout << count << ": [Key: " << key << ", value: " << line << "]" << endl;
         }
-
-        // Display the key
-        cout << pair.first << ": ";
-        
-        // Display the bucket list
-        cout << "[";
-        for (auto value : pair.second)
-        {
-            // Display the value
-            cout << value << " ";
-        }
-        cout << "]" << endl;
-        
-        // Increment the count
-        count++;
     }
 
     return 0;
