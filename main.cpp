@@ -19,6 +19,7 @@ void displayMenu();
 int gen_hash_index(string str);
 void displayEntries(const map<int, list<string>>& hash_table);
 void searchKey(const map<int, list<string>>& hash_table);
+void addKey(map<int, list<string>>& hash_table);
 
 // Main function
 int main()
@@ -295,5 +296,40 @@ void searchKey(const map<int, list<string>>& hash_table)
     {
         // Display a message
         cout << "Key not found!" << endl;
+    }
+}
+
+/*
+    addKey()
+    Add a key into the hash table
+    Arguments:
+        - hash_table: the hash table to add the key to
+    Return: none
+*/
+void addKey(map<int, list<string>>& hash_table)
+{
+    // Display a message
+    cout << " --- Adding a key --- " << endl;
+
+    // Create a variable to store the key
+    int key = 0;
+
+    // Prompt the user to enter the key to search for
+    cout << "Please enter the key you want to search for: ";
+    cin >> key;
+
+    // Create an iterator and use it to find the key
+    auto it = hash_table.find(key);
+
+    // Check whether the key had existed in the hash table
+    if (it != hash_table.end())
+    {
+        // Display a message
+        cout << "Key already existed!" << endl;
+    }
+    else          // Otherwise, we insert the key
+    {
+        // Insert the key into the table
+        hash_table.insert(key);
     }
 }
