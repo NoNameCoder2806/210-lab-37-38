@@ -44,7 +44,8 @@ int main()
     }
 
     // Display a header
-    cout << "Key   List" << endl;
+    cout << "First 100 keys and their buckets:" << endl;
+
     // Display the first 100 entries of the map
     for (const auto &pair : hash_table)
     {
@@ -55,7 +56,7 @@ int main()
         }
 
         // Display the key
-        cout << pair.first << " ";
+        cout << pair.first << ": ";
 
         // Count the number of elements that are printed
         int printed = 0;
@@ -69,8 +70,19 @@ int main()
             printed++;          // Increment the number of printed elements
 
             // Check the total number of elements printed
-            if (printed >= 5)
+            if (printed >= 5 && printed < pair.second.size())
             {
+                // Close the list
+                cout << ", ...] (total: " << pair.second.size() << ")" << endl;
+                
+                // Break out of the loop
+                break;
+            }
+            else if (printed >= pair.second.size())
+            {
+                // CLose the list
+                cout << "] (total: " << pair.second.size() << ")" << endl;
+
                 // Break out of the loop
                 break;
             }
@@ -83,9 +95,6 @@ int main()
 
         // Increment the count
         count++;
-
-        // Enter a new line
-        cout << endl;
     }
 
     return 0;
