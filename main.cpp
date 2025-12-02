@@ -1,10 +1,14 @@
-// COMSC-210 | Lab 36 | Dat Hoang Vien
+// COMSC-210 | Lab 37 | Dat Hoang Vien
 // IDE used: Visual Studio Code
 
 // Libraries
 #include <iostream>
+#include <fstream>
 #include <string>
 using namespace std;
+
+// Constants
+const string DATA_FILE = "data.txt";
 
 // Function prototypes
 int sum_ascii(string str);
@@ -12,35 +16,29 @@ int sum_ascii(string str);
 // Main function
 int main()
 {
-    // char a = 'A';
-    // cout << a << endl;
-    // cout << (int) a << endl;
-    // int b = 66;
-    // cout << b << endl;
-    // cout << (char) b << endl;
+    // Create an int variable to store the sum
+    int sum = 0;
 
-    // Testing strings
-    string s1 = "536B9DFC93AF";
-    string s2 = "1DA9D64D02A0";
-    string s3 = "666D109AA22E";
-    string s4 = "E1D2665B21EA";
+    // Create string variables
+    string dataFile = DATA_FILE;           // Store the data file's path
+    string line = "";                      // Store the line's data
+
+    // Create a file stream and open the file
+    ifstream fin;
+    fin.open(dataFile);
+
+    // Create a loop and read all the lines in the data file 
+    while (getline(fin, line))
+    {
+        // Add the sum of the line
+        sum += sum_ascii(line);
+    }
 
     // Output results
-    cout << "s1: " << sum_ascii(s1) << endl;
-    cout << "s2: " << sum_ascii(s2) << endl;
-    cout << "s3: " << sum_ascii(s3) << endl;
-    cout << "s4: " << sum_ascii(s4) << endl;
+    cout << "sum: " << sum << endl;
 
     return 0;
 }
-
-/* 
-These targets are present in the dataset and can be used for testing:
-536B9DFC93AF
-1DA9D64D02A0
-666D109AA22E
-E1D2665B21EA
-*/
 
 // Function implementations
 /*
