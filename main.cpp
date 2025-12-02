@@ -11,7 +11,7 @@ using namespace std;
 
 // Constants
 const string DATA_FILE = "data.txt";
-const int MODULO = 97;
+const int MODULO = 97; 
 
 // Function prototypes
 int gen_hash_index(string str);
